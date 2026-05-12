@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="ASHA Ladies Tailor - Premium Indian Bridal & Fashion Boutique. 25+ Years of Elegant Tailoring Experience. Specializing in Bridal Wear, Lehengas, Designer Suits, and more.">
+    <meta name="theme-color" content="#9b2c2c">
+    <title>ASHA Ladies Tailor | Luxury Indian Bridal Boutique</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Modern Elegant Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #fef9f5;
+            color: #2e241f;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Splash Screen */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c1a12 0%, #4e2a24 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        .loader {
+            text-align: center;
+        }
+        .loader-icon {
+            font-size: 4rem;
+            color: #eab354;
+            animation: floatSpin 1.2s infinite ease;
+            margin-bottom: 1rem;
+        }
+        .loader p {
+            color: #f8e5c8;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+        @keyframes floatSpin {
+            0% { transform: scale(0.9) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+            100% { transform: scale(0.9) rotate(0deg); opacity: 0.5; }
+        }
+
+        /* Scrollbar premium */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1e4db;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b66b4a;
+            border-radius: 10px;
+        }
+
+        /* Sticky Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 247, 240, 0.92);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, #a13d2f, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        .logo p {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #7a4b3a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #3a241c;
+            transition: 0.3s;
+            font-size: 1rem;
+            position: relative;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #d4af37;
+            transition: 0.3s;
+        }
+        .nav-links a:hover:after, .nav-links a.active:after {
+            width: 100%;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #b45f3b;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* General Styles */
+        section {
+            padding: 80px 5%;
+            max-width: 1600px;
+            margin: auto;
+        }
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #48241a;
+            letter-spacing: 1px;
+        }
+        .gold-line {
+            width: 80px;
+            height: 3px;
+            background: #d4af37;
+            margin: 0 auto 2rem auto;
+            border-radius: 2px;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #b35f3a, #8b3c2a);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #b35f3a;
+            color: #b35f3a;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #c96f45, #9e462f);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://images.pexels.com/photos/2741393/pexels-photo-2741393.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 1rem;
+        }
+        .hero-content {
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(5px);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            animation: fadeUp 1s ease;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            color: #fff3e6;
+            font-family: 'Cormorant Garamond', serif;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+        }
+        .hero-content p {
+            color: #ffe6cc;
+            font-size: 1.2rem;
+            margin: 1rem 0 2rem;
+        }
+        @keyframes fadeUp {
+            from { opacity:0; transform: translateY(30px);}
+            to { opacity:1; transform: translateY(0);}
+        }
+
+        /* Glass Cards */
+        .services-grid, .why-grid, .gallery-grid, .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .glass-card {
+            background: rgba(255, 245, 235, 0.7);
+            backdrop-filter: blur(7px);
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,215,170,0.7);
+            text-align: center;
+        }
+        .glass-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 35px -12px rgba(110, 50, 30, 0.2);
+            border-color: #d4af37;
+        }
+        .glass-card i {
+            font-size: 2.6rem;
+            color: #bb734e;
+            margin-bottom: 1rem;
+        }
+        .glass-card h3 {
+            font-size: 1.6rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Testimonials Slider */
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 40px;
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .testimonial-card {
+            flex: 0 0 100%;
+            background: rgba(255, 245, 240, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .testimonial-card i {
+            color: #d4af37;
+            font-size: 2rem;
+        }
+        .slider-buttons {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .slider-buttons button {
+            background: #cf8e6b;
+            border: none;
+            color: white;
+            padding: 8px 18px;
+            margin: 0 5px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        /* Gallery Masonry */
+        .gallery-masonry {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+            height: 280px;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(to top, #000000aa, transparent);
+            width: 100%;
+            padding: 1rem;
+            color: white;
+            font-weight: 500;
+        }
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity:0;
+            transition: 0.3s;
+        }
+        .lightbox.active {
+            visibility: visible;
+            opacity:1;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 20px;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Contact + Map */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .glass-contact {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 247, 240, 0.7);
+            border-radius: 36px;
+            padding: 2rem;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 28px;
+            border: 1px solid #e2cbb8;
+            background: #fffaf5;
+        }
+        .map-responsive {
+            overflow: hidden;
+            border-radius: 28px;
+            height: 300px;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            z-index: 99;
+            transition: 0.2s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.07);
+        }
+        footer {
+            background: #2c1810;
+            color: #faead3;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 40px 40px 0 0;
+        }
+        .social-icons a {
+            color: #dbb879;
+            margin: 0 12px;
+            font-size: 1.6rem;
+            transition: 0.2s;
+        }
+
+        @media (max-width: 1000px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(255, 247, 240, 0.96);
+                padding: 1rem;
+                border-radius: 24px;
+                margin-top: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            h2 {
+                font-size: 2.3rem;
+            }
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        button, a {
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="loader-wrapper" id="loader">
+    <div class="loader">
+        <i class="fas fa-feather-alt loader-icon"></i>
+        <p>ASHA <span style="color:#eab354;">Ladies Tailor</span></p>
+        <p style="font-size:0.9rem;">Crafting Elegance Since 2000</p>
+    </div>
+</div>
+
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>ASHA LADIES TAILOR</h1>
+            <p>Premium Bridal & Ethnic Boutique</p>
+        </div>
+        <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li><a href="#contact" class="nav-link">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <!-- HOME Section -->
+    <section id="home" style="padding-top:0;">
+        <div class="hero">
+            <div class="hero-content scroll-reveal">
+                <h1>25+ Years of Elegant Tailoring Experience</h1>
+                <p>Where tradition meets luxury, and every stitch tells a story.</p>
+                <a href="#services" class="btn">Discover Collection</a>
+                <a href="#contact" class="btn btn-outline" style="margin-left: 15px;">Book Appointment</a>
+            </div>
+        </div>
+        <div class="scroll-reveal" style="text-align:center; max-width:800px; margin:2rem auto;">
+            <h2 style="font-size:2rem;">Where Dreams are Tailored</h2>
+            <p style="font-size:1.2rem;">ASHA Ladies Tailor, nestled in Karimnagar, has dressed generations of brides with intricate craftsmanship, luxurious fabrics, and impeccable fitting. Our legacy speaks through each lehenga, saree, and designer ensemble.</p>
+        </div>
+    </section>
+
+    <!-- SERVICES Section -->
+    <section id="services">
+        <h2 class="scroll-reveal">Our Signature Services</h2>
+        <div class="gold-line"></div>
+        <div class="services-grid">
+            <div class="glass-card scroll-reveal"><i class="fas fa-vest"></i><h3>Designer Dress Stitching</h3><p>Custom & contemporary silhouettes</p></div>
+            <div class="glass-card scroll-reveal"><i class="fas fa-ring"></i><h3>Bridal Wear Stitching</h3><p>Dream wedding ensembles</p></div>
+            <div class="glass-card scroll-reveal"><i class="fas fa-fan"></i><h3>Lehenga Stitching</h3><p>Traditional & fusion lehengas</p></div>
+            <div class="glass-card scroll-reveal"><i class="fas fa-female"></i><h3>Churidar & Salwar</h3><p>Flawless fits & comfort</p></div>
+            <div class="glass-card scroll-reveal"><i class="fas fa-child"></i><h3>Kids Wear Stitching</h3><p>Charming ethnic outfits</p></div>
+            <div class="glass-card scroll-reveal"><i class="fas fa-cut"></i><h3>Fashion Alterations</h3><p>Precision adjustments</p></div>
+            
+            <div class="glass-card scroll-reveal"><i class="fas fa-calendar-alt"></i><h3>Party Wear Stitching</h3><p>Glamorous ready for events</p></div>
+            
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section style="background: linear-gradient(145deg, #fff1e6, #ffe8db); border-radius: 60px; margin: 2rem auto;">
+        <h2 class="scroll-reveal">Why Choose ASHA?</h2>
+        <div class="gold-line"></div>
+        <div class="why-grid">
+            <div class="glass-card scroll-reveal"><i class="fas fa-medal"></i><h3>25+ Years Trust</h3><p>Legacy of satisfied brides</p></div>
+            <div class="glass-card scroll-reveal"><i class="fas fa-paintbrush"></i><h3>Bespoke Designs</h3><p>Personalized Sketch to Stitch</p></div>
+            <div class="glass-card scroll-reveal"><i class="fas fa-clock"></i><h3>On-Time Delivery</h3><p>Punctuality guaranteed</p></div>
+            <div class="glass-card scroll-reveal"><i class="fas fa-hand-holding-heart"></i><h3>Premium Fabrics</h3><p>Silk, velvet, raw silk & more</p></div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section>
+        <h2 class="scroll-reveal">Happy Brides & Clients</h2>
+        <div class="gold-line"></div>
+        <div class="testimonial-slider">
+            <div class="testimonial-track" id="testimonialTrack">
+                <div class="testimonial-card"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><p>"My wedding lehenga was a masterpiece! Thank you ASHA team for making me feel royal."</p><h4>- Ayesha</h4></div>
+                <div class="testimonial-card"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><p>"Best boutique in Karimnagar, incredible maggam work, and perfect fitting."</p><h4>- Anjali </h4></div>
+                <div class="testimonial-card"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><p>"From blouse designs to bridal lehengas, they are truly artists."</p><h4>- Sanya </h4></div>
+            </div>
+            <div class="slider-buttons"><button id="prevSlide"><i class="fas fa-chevron-left"></i></button><button id="nextSlide"><i class="fas fa-chevron-right"></i></button></div>
+        </div>
+    </section>
+
+    <!-- GALLERY Section with Masonry -->
+    <section id="gallery">
+        <h2 class="scroll-reveal">Our Masterpieces</h2>
+        <div class="gold-line"></div>
+        <div class="gallery-masonry" id="galleryContainer">
+            <!-- images from luxury google-inspired high quality (Unsplash/Pexels inspired premium Indian bridal) -->
+        </div>
+    </section>
+
+    <!-- CONTACT US Page -->
+    <section id="contact">
+        <h2 class="scroll-reveal">Connect With Us</h2>
+        <div class="gold-line"></div>
+        <div class="contact-grid">
+            <div class="glass-contact scroll-reveal">
+                <h3><i class="fas fa-envelope"></i> Send Inquiry</h3>
+                <form id="contactForm">
+                    <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="email" placeholder="Email Address" required></div>
+                    <div class="form-group"><textarea rows="4" placeholder="Tell us your dream outfit..."></textarea></div>
+                    <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+            <div class="glass-contact scroll-reveal">
+                <h3><i class="fas fa-location-dot"></i> Visit Our Atelier</h3>
+                <p><strong>📍 Address:</strong> Opposite Fire Station, Kashmeergadda, Karimnagar, Telangana - 505001</p>
+                <p><i class="fas fa-phone-alt"></i> <strong>Call:</strong> <a href="tel:+917893187079" style="color:#b35f3a;">7893187079</a></p>
+                <div class="map-responsive" style="margin-top:1rem;">
+                    <iframe src="https://maps.google.com/maps?q=Asha%20Ladies%20Tailor%20Karimnagar&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <a href="https://www.google.com/maps/place/Asha+Ladies+Tailor/@18.4366606,79.1203593,17z/data=!3m1!4b1!4m6!3m5!1s0x3bccd90b8a862ee3:0x4fd5cc0ca3b00192!8m2!3d18.4366606!4d79.1203593!16s%2Fg%2F11zb8271xb?entry=ttu" target="_blank" class="btn" style="margin-top:1rem; display:inline-block;"><i class="fas fa-map-marked-alt"></i> View Location & Get Directions</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2026 ASHA Ladies Tailor — Since 2000 | Timeless Elegance & Bridal Artistry</p>
+    <p><i class="fas fa-heart" style="color:#d4af37;"></i> Crafted with passion in Karimnagar</p>
+</footer>
+
+<a href="https://wa.me/917893187079?text=Hello%20ASHA%20Ladies%20Tailor%2C%20I%20would%20like%20to%20inquire%20about%20bridal%20wear%20stitching." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+    // LOADER
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+        }, 1000);
+    });
+
+    // Mobile Menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+    // Sticky active link + smooth scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            if (scrollY >= sectionTop) current = section.getAttribute('id');
+        });
+        navItems.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+        });
+    });
+
+    // Smooth scroll for navlinks
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if(target) target.scrollIntoView({behavior: 'smooth'});
+            if(navLinks.classList.contains('active')) navLinks.classList.remove('active');
+        });
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) entry.target.classList.add('revealed');
+        });
+    }, {threshold:0.2});
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Testimonial Slider
+    const track = document.getElementById('testimonialTrack');
+    const slides = Array.from(document.querySelectorAll('.testimonial-card'));
+    let currentIdx = 0;
+    function updateSlider() { track.style.transform = `translateX(-${currentIdx * 100}%)`; }
+    document.getElementById('nextSlide').addEventListener('click', () => { currentIdx = (currentIdx + 1) % slides.length; updateSlider(); });
+    document.getElementById('prevSlide').addEventListener('click', () => { currentIdx = (currentIdx - 1 + slides.length) % slides.length; updateSlider(); });
+
+    // Gallery dynamic high-res images (Indian bridal luxury)
+    const galleryImages = [
+        {category: 'Bridal Collection', url: 'https://i.pinimg.com/736x/a1/22/10/a12210af814f64fccf5afb9fe239fd0d.jpg'},
+        {category: 'Traditional Wear', url: 'https://cdn.shopify.com/s/files/1/0121/8376/5088/files/three_1024x1024.jpg?v=1577339708'},
+        {category: 'Designer Collection', url: 'https://taruni.in/cdn/shop/files/TWAK815_1.jpg'},
+        {category: 'Kids Wear', url: 'https://assets0.mirraw.com/images/13917907/LeriyaAnarkaliFront_original_long_webp.webp?1775750105'},
+        
+        
+        {category: 'Designer Collection', url: 'https://assets0.mirraw.com/images/12930364/image_zoom.jpeg?1729851772'},
+        {category: 'Party Wear', url: 'https://ragthm.com/cdn/shop/files/5011_1.jpg?v=1721464960'}
+    ];
+    const galleryContainer = document.getElementById('galleryContainer');
+    galleryImages.forEach(img => {
+        const div = document.createElement('div');
+        div.classList.add('gallery-item');
+        div.innerHTML = `<img src="${img.url}" alt="Luxury bridal wear" loading="lazy"><div class="gallery-overlay">${img.category}</div>`;
+        div.addEventListener('click', () => {
+            const lb = document.createElement('div');
+            lb.className = 'lightbox active';
+            lb.innerHTML = `<span class="close-lightbox">&times;</span><img src="${img.url}" alt="preview">`;
+            document.body.appendChild(lb);
+            lb.querySelector('.close-lightbox').addEventListener('click', () => lb.remove());
+            lb.addEventListener('click', (e) => { if(e.target === lb) lb.remove(); });
+        });
+        galleryContainer.appendChild(div);
+    });
+
+    // Contact Form Frontend Handler
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("✨ Thank you for reaching out! Our team will connect with you soon to discuss your dream outfit. 💌");
+        contactForm.reset();
+    });
+</script>
+</body>
+</html>
